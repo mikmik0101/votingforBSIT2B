@@ -11,14 +11,15 @@
       projects, or set the security rules found in README.md).
    ============================================================ */
 
-const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
-};
+ const firebaseConfig = {
+    apiKey: "AIzaSyCn4vvl6nmxc90OlEwYJFN63sfBIWIeGYU",
+    authDomain: "bsitvotingsystem.firebaseapp.com",
+    projectId: "bsitvotingsystem",
+    storageBucket: "bsitvotingsystem.firebasestorage.app",
+    messagingSenderId: "419056322668",
+    appId: "1:419056322668:web:d0235a1b772ac5f96eb049",
+    measurementId: "G-5QEYH06NQW"
+  };
 
 // Initialize Firebase (using the compat SDK loaded via <script> tags
 // in index.html — no build tools / npm required)
