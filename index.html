@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BSIT Class Election</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===================== HERO / HEADER ===================== -->
+  <div class="hero text-center">
+    <h1 class="mb-1">🗳️ BSIT Class Election</h1>
+    <p class="mb-0">Cast your vote for your future class officers</p>
+  </div>
+
+  <div class="container pb-5">
+
+    <!-- Live election schedule banner (hidden until settings load) -->
+    <div id="scheduleBanner" class="alert alert-info text-center fw-semibold" role="alert">
+      Loading election schedule…
+    </div>
+
+    <!-- ===================== STUDENT VERIFICATION ===================== -->
+    <div id="verifySection" class="row justify-content-center">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-header text-center">Student Verification</div>
+          <div class="card-body">
+            <form id="verifyForm">
+              <label for="studentIdInput" class="form-label">Enter your Student ID</label>
+              <input type="text" class="form-control mb-3" id="studentIdInput"
+                     placeholder="e.g. C202500618" required>
+              <button type="submit" class="btn btn-primary w-100">Continue</button>
+              <div id="verifyAlert" class="alert mt-3 d-none" role="alert"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== ELECTION SECTION (hidden until verified) ===================== -->
+    <div id="electionSection" class="d-none">
+
+      <p class="text-end text-muted small">
+        Verified as <strong id="welcomeStudentId"></strong>
+      </p>
+
+      <div id="voteResultAlert" class="alert d-none" role="alert"></div>
+
+      <div class="row" id="positionsContainer">
+        <!-- Position cards are rendered here by app.js -->
+      </div>
+
+      <div class="text-center my-4">
+        <button id="submitVotesBtn" class="btn btn-primary btn-lg" disabled>
+          SUBMIT MY VOTES
+        </button>
+      </div>
+
+      <!-- ===================== RESULTS (shown after election ends) ===================== -->
+      <div id="resultsSection" class="d-none">
+        <hr class="my-5">
+        <h2 class="text-center mb-4">📊 Election Results</h2>
+        <div class="row" id="resultsContainer"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="text-center">
+    Built with Firebase + Bootstrap • BSIT Class Election
+  </footer>
+
+  <!-- ===================== ADD NOMINEE MODAL ===================== -->
+  <div class="modal fade" id="addNomineeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Nominee — <span id="nomineeModalPositionLabel"></span></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="nomineeModalPosition">
+          <label for="nomineeNameInput" class="form-label">Nominee Name</label>
+          <input type="text" class="form-control" id="nomineeNameInput"
+                 placeholder="e.g. JOHN C" autocomplete="off">
+          <div id="nomineeCheckMsg" class="form-text"></div>
+
+          <div class="alert alert-light border mt-3 small mb-0">
+            <strong>Enter the nominee using the format: FIRST NAME + LAST NAME INITIAL (ALL CAPITAL LETTERS).</strong>
+            <div class="mt-2">
+              ✅ JOHN C &nbsp; ✅ MARIA S &nbsp; ✅ CARLO D &nbsp; ✅ ANGEL M
+            </div>
+            <div class="mt-1 text-danger">
+              ❌ John C &nbsp; ❌ JOHN &nbsp; ❌ JOHN CRUZ &nbsp; ❌ JOHN123 &nbsp; ❌ JOHN_C
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="saveNomineeBtn" disabled>Save Nominee</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CONFIRM VOTE MODAL ===================== -->
+  <div class="modal fade" id="confirmVoteModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Your Votes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p id="confirmVoteText"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="confirmSubmitBtn">Yes, Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDKs (compat build — no bundler needed) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+  <!-- Bootstrap 5 JS bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- App scripts -->
+  <script src="js/firebase-config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
